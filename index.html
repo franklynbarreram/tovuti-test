@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOVUTI</title>
+  </head>
+  <body>
+    <h1>THIS IS TOVUTI</h1>
+    --------------------------------------
+    <iframe
+      src="https://b3cz7gdq-9090.use2.devtunnels.ms/"
+      width="100%"
+      height="800px"
+      frameborder="0"
+    ></iframe>
+
+    <script>
+      function setCookie(name, value, days) {
+
+        let expires = "";
+        
+        if (days) {
+          const date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); 
+          expires = "; expires=" + date.toUTCString(); 
+        }
+
+        document.cookie = name + "=" + (value || "") + expires + "; path=/"; 
+      }
+
+    setCookie('state', 'NEW YORK', 7);
+    setCookie('student', '1620322', 7);
+
+       function getCookie(name) {
+        const cookieArr = document.cookie.split(";");
+
+        for (let i = 0; i < cookieArr.length; i++) {
+          let cookie = cookieArr[i].trim();
+
+          if (cookie.startsWith(name + "=")) {
+            return cookie.substring((name + "=").length);
+          }
+        }
+
+        return null;
+      }
+
+      setTimeout(() => {
+        // console.log("cookie", getCookie("student"));
+        console.log("Cookie en tovuti; ", document.cookie);
+      }, 1000);
+    </script>
+    </script>
+  </body>
+</html>
