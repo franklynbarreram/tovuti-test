@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>THIS IS TOVUTI</h1>
+    <div id="cookie-container"></div>
     --------------------------------------
     <iframe
       src="https://intermedia-test.vercel.app/"
@@ -48,6 +49,11 @@
 
       setTimeout(() => {
         // console.log("cookie", getCookie("student"));
+        const cookieContainer = document.getElementById('cookie-container');
+      const cookies = document.cookie; // Obtiene todas las cookies como un string
+
+      // Inserta las cookies dentro del div
+      cookieContainer.textContent = "Cookies dentro de Tovuti: " + cookies;
         console.log("Cookie en tovuti; ", document.cookie);
       }, 1000);
     </script>
