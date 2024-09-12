@@ -17,46 +17,89 @@
     ></iframe>
 
     <script>
-      function setCookie(name, value, days) {
+      //   function setCookie(name, value, days) {
 
-        let expires = "";
-        
-        if (days) {
-          const date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); 
-          expires = "; expires=" + date.toUTCString(); 
-        }
+      //     let expires = "";
 
-        document.cookie = name + "=" + (value || "") + expires + "; path=/"; 
-      }
+      //     if (days) {
+      //       const date = new Date();
+      //       date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      //       expires = "; expires=" + date.toUTCString();
+      //     }
 
-    setCookie('state', 'NEW YORK', 7);
-    setCookie('student', '1620322', 7);
+      //     document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      //   }
 
-       function getCookie(name) {
-        const cookieArr = document.cookie.split(";");
+      // setCookie('state', 'NEW YORK', 7);
+      // setCookie('student', '1620322', 7);
 
-        for (let i = 0; i < cookieArr.length; i++) {
-          let cookie = cookieArr[i].trim();
+      //    function getCookie(name) {
+      //     const cookieArr = document.cookie.split(";");
 
-          if (cookie.startsWith(name + "=")) {
-            return cookie.substring((name + "=").length);
-          }
-        }
+      //     for (let i = 0; i < cookieArr.length; i++) {
+      //       let cookie = cookieArr[i].trim();
 
-        return null;
-      }
+      //       if (cookie.startsWith(name + "=")) {
+      //         return cookie.substring((name + "=").length);
+      //       }
+      //     }
 
-      setTimeout(() => {
-        // console.log("cookie", getCookie("student"));
-        const cookieContainer = document.getElementById('cookie-container');
-      const cookies = document.cookie; // Obtiene todas las cookies como un string
+      //     return null;
+      //   }
 
-      // Inserta las cookies dentro del div
-      cookieContainer.textContent = "Cookies dentro de Tovuti: " + cookies;
-        console.log("Cookie en tovuti; ", document.cookie);
-      }, 1000);
+      //   setTimeout(() => {
+      //     // console.log("cookie", getCookie("student"));
+      //     const cookieContainer = document.getElementById('cookie-container');
+      //   const cookies = document.cookie; // Obtiene todas las cookies como un string
+
+      //   // Inserta las cookies dentro del div
+      //   cookieContainer.textContent = "Cookies dentro de Tovuti: " + cookies;
+      //     console.log("Cookie en tovuti; ", document.cookie);
+      //   }, 1000);
     </script>
+
+    <!-- <script>
+      const urlPattern = "https://intermedia-test.vercel.app";
+
+      const cookies = document.cookie;
+
+      const iframes = document.querySelectorAll("iframe");
+
+      let matchingIframes = [];
+
+      iframes.forEach((iframe) => {
+        if (iframe.src.includes(urlMatch)) {
+          matchingIframes.push(iframe.src);
+        }
+      });
+
+      if (matchingIframes.length > 0) {
+        matchingIframes.forEach((matchingUrl) => {
+          const iframe = document.querySelector(`iframe[src="${matchingUrl}"]`);
+
+          iframe.addEventListener("load", () => {
+            iframe.contentWindow.postMessage({ cookies }, matchingUrl);
+          });
+        });
+      }
+    </script> -->
+
+    <script>
+      const urlPattern = "https://intermedia-test.vercel.app";
+
+      const cookies = document.cookie;
+
+      const matchingIframes = document.querySelectorAll(
+        `iframe[src*="${urlPattern}"]`
+      );
+
+      if (matchingIframes.length > 0) {
+        matchingIframes.forEach((iframe) => {
+          iframe.addEventListener("load", () => {
+            iframe.contentWindow.postMessage({ cookies }, iframe.src);
+          });
+        });
+      }
     </script>
   </body>
 </html>
